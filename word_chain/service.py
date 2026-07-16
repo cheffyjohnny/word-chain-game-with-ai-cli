@@ -9,6 +9,9 @@ from .models import GameResult
 from .repository import GameRepository
 from .words import is_valid_word
 
+# How many correct answers the human needs to win outright, by difficulty.
+WIN_TARGETS = {"easy": 20, "normal": 50, "hard": 100}
+
 
 class GameService:
     def __init__(self, ai_client: AiClient, repo: GameRepository, word_set: set[str]):

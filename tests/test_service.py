@@ -5,7 +5,7 @@ import pytest
 from word_chain.ai_client import AiClient, AiMove
 from word_chain.models import GameResult
 from word_chain.repository import GameRepository
-from word_chain.service import GameService
+from word_chain.service import WIN_TARGETS, GameService
 
 SMALL_WORD_SET = {"apple", "elephant", "tiger", "rat", "tomato", "orange"}
 
@@ -76,3 +76,16 @@ def test_record_game_saves_to_repository(service: GameService, repo: InMemoryGam
     assert len(results) == 1
     assert results[0].winner == "human"
     assert results[0].chain == ["apple", "elephant"]
+
+
+def test_record_game_supports_loss_and_incomplete_outcomes(
+    service: GameService, repo: InMemoryGameRepository
+):
+    service.record_game(["apple"], winner="ai", ai_mode="offline")
+    service.record_game(["apple", "elephant"], winner="incomplete", ai_mode="offline")
+    winners = {r.winner for r in repo.list()}
+    assert winners == {"ai", "incomplete"}
+
+
+def test_win_targets_increase_with_difficulty():
+    assert WIN_TARGETS == {"easy": 20, "normal": 50, "hard": 100}

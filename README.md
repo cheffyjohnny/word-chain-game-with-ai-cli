@@ -1,4 +1,4 @@
-# word-chain-cli
+# word-chain-game-cli
 
 A CLI word chain game — take turns with an AI opponent, each word starting with the last letter of the one before it (apple → elephant → tiger → rat → ...).
 
