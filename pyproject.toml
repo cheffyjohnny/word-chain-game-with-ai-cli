@@ -1,0 +1,28 @@
+[project]
+name = "word-chain-cli"
+version = "1.0.0"
+description = "A CLI word chain game with a Gemini-powered AI opponent (offline fallback when no API key is set), using a repository pattern over local JSON storage."
+requires-python = ">=3.9"
+dependencies = [
+    "click>=8.1",
+    "requests>=2.31",
+    "python-dotenv>=1.0",
+]
+
+[project.scripts]
+wordchain = "word_chain.cli:cli"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["word_chain"]
+
+[tool.setuptools.package-data]
+word_chain = ["data/*.txt"]
