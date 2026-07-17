@@ -1,5 +1,5 @@
 [project]
-name = "word-chain-game-cli"
+name = "word-chain-game-with-ai-cli"
 version = "1.0.0"
 description = "A CLI word chain game with a Gemini-powered AI opponent (offline fallback when no API key is set), using a repository pattern over local JSON storage."
 requires-python = ">=3.9"
