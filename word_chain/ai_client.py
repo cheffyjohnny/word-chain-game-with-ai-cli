@@ -8,7 +8,7 @@ from dataclasses import dataclass
 
 import requests
 
-from .words import build_letter_start_counts, is_valid_word, random_next_word
+from .words import build_letter_start_counts, random_next_word
 
 GEMINI_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 
@@ -117,9 +117,9 @@ class GeminiAiClient(AiClient):
 
                 if (
                     word
+                    and word.isalpha()
                     and word[0] == last_letter.lower()
                     and word not in used_words
-                    and is_valid_word(word, self.word_set)
                 ):
                     return word
                 break  # model returned an invalid word, try the next model
